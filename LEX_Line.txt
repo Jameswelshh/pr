@@ -1,0 +1,45 @@
+%{
+
+#include<stdio.h>
+
+int lc=0, wc=0, ch=0;
+
+%}
+ 
+
+%%
+
+\n {lc++; wc++;}
+
+[\t ' '] wc++;
+
+. ch++;
+
+%%
+
+
+int yywrap() 
+{
+	
+return 1;
+
+}
+ 
+
+int main()
+
+{
+	yyin=fopen("sample.txt", "r");
+    
+yylex();
+     
+    
+printf("\nNo. of lines=%d", lc); 
+    
+printf("\nNo. of words=%d", wc);
+    
+printf("\nNo. of other characters=%d", ch);
+	
+return 0;
+
+}
